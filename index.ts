@@ -9,8 +9,7 @@ const dishesUrl = './data/dishes.json';
 const ingredientsUrl = './data/ingredients.json';
 const possibleFilters: TDishType[] = ["primary", "vegeterian", "soup", "dessert", "fish", "salad", "drinks", "snacks", "holiday", "cheap"]
 const app: Express = express();
-const portHttp = process.env.PORTHTTP;
-const portHttps = process.env.PORTHTTPS;
+const port = process.env.PORT;
 const options = {
   cert: fs.readFileSync('/etc/letsencrypt/live/elegant-solutions.ru/fullchain.pem', 'utf-8'),
   key: fs.readFileSync('/etc/letsencrypt/live/elegant-solutions.ru/privkey.pem', 'utf-8')
@@ -25,10 +24,7 @@ app.post('/food', (req: Request<{}, {}, IFood>, res: Response<IDish[]>) => {
   const answer = dishes.filter(dish => filters.every(fil => dish.types.includes(fil)))
   res.send(answer);
 })
-app.listen(portHttp, () => {
-  console.log(`⚡️[server]: Server is running at http://elegant-solutions with port ${portHttp}`);
+app.listen(port, () => {
+  console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
 });
-const httpsServer = https.createServer(options, app);
-httpsServer.listen(8443, () => {
-  console.log(`https ${portHttps}`);
-});
+https.createServer(options, app).listen(8443)
