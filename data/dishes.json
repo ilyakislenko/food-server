@@ -1,0 +1,82 @@
+[
+    {
+        "id":"0",
+        "title":"test dish with pork",
+        "description":"something that can be written here",
+        "types":["primary"],
+        "ingredients":[{"title":"carrot","amount":"0.2"},
+        {"title":"pork","amount":"0.8"},
+        {"title":"potato","amount":"1.25"},
+        {"title":"salt","amount":"0.05"},
+        {"title":"tomato","amount":"0.7"}]
+    },
+    {
+        "id":"1",
+        "title":"test dish without pork",
+        "description":"something that can be written here",
+        "types":["vegeterian","primary"],
+        "ingredients":[{"title":"carrot","amount":"0.2"},
+        {"title":"potato","amount":"1.25"},
+        {"title":"salt","amount":"0.05"},
+        {"title":"tomato","amount":"0.7"}]
+    },
+    {
+        "id":"2",
+        "title":"test dish salad",
+        "description":"something that can be written here",
+        "types":["vegeterian","salad"],
+        "ingredients":[{"title":"carrot","amount":"0.2"},
+        {"title":"salt","amount":"0.05"},
+        {"title":"tomato","amount":"0.7"}]
+    },
+    {
+        "id":"3",
+        "title":"test dish soup",
+        "description":"something that can be written here",
+        "types":["soup"],
+        "ingredients":[{"title":"carrot","amount":"0.2"},
+        {"title":"pork","amount":"0.8"},
+        {"title":"potato","amount":"1.25"},
+        {"title":"salt","amount":"0.05"},
+        {"title":"tomato","amount":"0.7"},
+        {"title":"water","amount":"3"}]
+    },
+    {
+        "id":"4",
+        "title":"test dish vegeterian",
+        "description":"something that can be written here",
+        "types":["vegeterian"],
+        "ingredients":[{"title":"carrot","amount":"0.2"},
+        {"title":"pork","amount":"0.8"},
+        {"title":"potato","amount":"1.25"},
+        {"title":"salt","amount":"0.05"},
+        {"title":"tomato","amount":"0.7"}]
+    },
+    {
+        "id":"5",
+        "title":"test dish dessert",
+        "description":"something that can be written here",
+        "types":["dessert"],
+        "ingredients":[{"title":"water","amount":"0.7"}]
+    },
+    {
+        "id":"6",
+        "title":"test dish potato cheap",
+        "description":"something that can be written here",
+        "types":["vegeterian","cheap"],
+        "ingredients":[
+        {"title":"potato","amount":"1.25"}]
+    },
+    {
+        "id":"7",
+        "title":"test dish with fish",
+        "description":"something that can be written here",
+        "types":["fish","primary"],
+        "ingredients":[
+        {"title":"potato","amount":"1.25"},
+        {"title":"salt","amount":"0.05"},
+        {"title":"tomato","amount":"0.7"},
+        {"title":"salmon","amount":"0.4"}
+    ]
+    }
+]
