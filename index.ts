@@ -15,20 +15,22 @@ app.use(bodyParser.json())
 const port = process.env.PORT;
 const portHttps = process.env.HTTPS;
 const options = {
-  cert: fs.readFileSync('/etc/letsencrypt/live/elegant-solutions.ru/fullchain.pem','utf-8'),
-  key: fs.readFileSync('/etc/letsencrypt/live/elegant-solutions.ru/privkey.pem','utf-8')
+  cert: fs.readFileSync('/etc/letsencrypt/live/elegant-solutions.ru/fullchain.pem', 'utf-8'),
+  key: fs.readFileSync('/etc/letsencrypt/live/elegant-solutions.ru/privkey.pem', 'utf-8')
 };
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
-app.post('/food', (req: Request<{}, {}, IFood>, res: Response<IDish[]>) => {
-  console.log(req)
-  console.log(req.body)
+app.post('/food', (req: Request<{}, {}, IFood>, res: Response<IDish>) => {
   const filters: TDishType[] = Array.from(new Set(req.body.filters ? req.body.filters : [])).filter((fil) => possibleFilters.includes(fil))
   const dishes: IDish[] = JSON.parse(fs.readFileSync(dishesUrl, 'utf8'));
   const ingredients: IIngredient[] = JSON.parse(fs.readFileSync(ingredientsUrl, 'utf8'));
-  const answer = dishes.filter(dish => filters.every(fil => dish.types.includes(fil)))
-  res.send(answer);
+  const items = dishes.filter(dish => filters.every(fil => dish.types.includes(fil)))
+  if (items.length) {
+    const item = items[Math.floor(Math.random() * items.length)];
+    res.send(item);
+  }
+  res.send(undefined);
 })
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
