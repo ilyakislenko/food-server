@@ -2,7 +2,6 @@ import express, { Express, Request, Response } from 'express';
 import fs from 'fs';
 import dotenv from 'dotenv';
 import https from 'https';
-import http from 'http';
 import { IDish, IFood, IIngredient, TDishType } from './types';
 
 dotenv.config();
@@ -29,11 +28,7 @@ app.post('/food', (req: Request<{}, {}, IFood>, res: Response<IDish[]>) => {
 // app.listen(port, () => {
 //   console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
 // });
-const httpServer = http.createServer(app);
 const httpsServer = https.createServer(options, app);
-httpServer.listen(8080, () => {
-  console.log(`http ${portHttp}`);
-});
 httpsServer.listen(8443, () => {
   console.log(`https ${portHttps}`);
 });
