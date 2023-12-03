@@ -1,4 +1,5 @@
 import express, { Express, Request, Response } from 'express';
+import bodyParser from 'body-parser';
 import fs from 'fs';
 import dotenv from 'dotenv';
 import https from 'https';
@@ -9,6 +10,8 @@ const dishesUrl = './data/dishes.json';
 const ingredientsUrl = './data/ingredients.json';
 const possibleFilters: TDishType[] = ["primary", "vegeterian", "soup", "dessert", "fish", "salad", "drinks", "snacks", "holiday", "cheap"]
 const app: Express = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
 const port = process.env.PORT;
 const portHttps = process.env.HTTPS;
 const options = {
@@ -19,6 +22,8 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 app.post('/food', (req: Request<{}, {}, IFood>, res: Response<IDish[]>) => {
+  console.log(req)
+  console.log(req.body)
   const filters: TDishType[] = Array.from(new Set(req.body.filters ? req.body.filters : [])).filter((fil) => possibleFilters.includes(fil))
   const dishes: IDish[] = JSON.parse(fs.readFileSync(dishesUrl, 'utf8'));
   const ingredients: IIngredient[] = JSON.parse(fs.readFileSync(ingredientsUrl, 'utf8'));
