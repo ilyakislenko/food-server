@@ -10,6 +10,7 @@ const ingredientsUrl = './data/ingredients.json';
 const possibleFilters: TDishType[] = ["primary", "vegeterian", "soup", "dessert", "fish", "salad", "drinks", "snacks", "holiday", "cheap"]
 const app: Express = express();
 const port = process.env.PORT;
+const portHttps = process.env.HTTPS;
 const options = {
   cert: fs.readFileSync('/etc/letsencrypt/live/elegant-solutions.ru/fullchain.pem','utf-8'),
   key: fs.readFileSync('/etc/letsencrypt/live/elegant-solutions.ru/privkey.pem','utf-8')
@@ -27,4 +28,4 @@ app.post('/food', (req: Request<{}, {}, IFood>, res: Response<IDish[]>) => {
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
 });
-https.createServer(options, app).listen(8443)
+https.createServer(options, app).listen(portHttps)
