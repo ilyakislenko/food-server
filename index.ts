@@ -11,8 +11,8 @@ const possibleFilters: TDishType[] = ["primary", "vegeterian", "soup", "dessert"
 const app: Express = express();
 const port = process.env.PORT;
 const options = {
-  cert: fs.readFileSync('/etc/letsencrypt/live/elegant-solutions.ru/fullchain.pem', 'utf-8'),
-  key: fs.readFileSync('/etc/letsencrypt/live/elegant-solutions.ru/privkey.pem', 'utf-8')
+  cert: fs.readFileSync('/etc/letsencrypt/live/elegant-solutions.ru/fullchain.pem','utf-8'),
+  key: fs.readFileSync('/etc/letsencrypt/live/elegant-solutions.ru/privkey.pem','utf-8')
 };
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
