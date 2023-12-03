@@ -25,9 +25,9 @@ app.post('/food', (req: Request<{}, {}, IFood>, res: Response<IDish[]>) => {
   const answer = dishes.filter(dish => filters.every(fil => dish.types.includes(fil)))
   res.send(answer);
 })
-// app.listen(port, () => {
-//   console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
-// });
+app.listen(portHttp, () => {
+  console.log(`⚡️[server]: Server is running at http://elegant-solutions with port ${portHttp}`);
+});
 const httpsServer = https.createServer(options, app);
 httpsServer.listen(8443, () => {
   console.log(`https ${portHttps}`);
