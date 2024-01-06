@@ -8,7 +8,7 @@ import { IDish, IFood, IIngredient, TDishType } from './types';
 dotenv.config();
 const dishesUrl = './data/dishes.json';
 const ingredientsUrl = './data/ingredients.json';
-const possibleFilters: TDishType[] = ["primary", "vegeterian", "soup", "dessert", "fish", "salad", "drinks", "snacks", "holiday", "cheap"]
+const possibleFilters: TDishType[] = ["primary", "vegeterian", "soup", "dessert", "fish", "salad", "drinks", "snacks", "holiday", "cheap"];
 const app: Express = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
@@ -23,10 +23,11 @@ app.get('/', (req: Request, res: Response) => {
 });
 app.post('/food', (req: Request<{}, {}, IFood>, res: Response<IDish>) => {
   const filters: TDishType[] = Array.from(new Set(req.body.filters ? req.body.filters : [])).filter((fil) => possibleFilters.includes(fil))
+  const previousId: string | null = req.body.last;
   const dishes: IDish[] = JSON.parse(fs.readFileSync(dishesUrl, 'utf8'));
   const ingredients: IIngredient[] = JSON.parse(fs.readFileSync(ingredientsUrl, 'utf8'));
-  const items = dishes.filter(dish => filters.every(fil => dish.types.includes(fil)))
-  if (items.length) {
+  const items = dishes.filter(dish => filters.every(fil => dish.types.includes(fil) && dish.id !== previousId))
+  if (items.length) { 
     const item = items[Math.floor(Math.random() * items.length)];
     res.send(item);
   }
