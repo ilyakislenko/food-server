@@ -23,7 +23,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 app.post('/food', (req: Request<{}, {}, IFood>, res: Response<IDish>) => {
   const filters: TDishType[] = Array.from(new Set(req.body.filters ? req.body.filters : [])).filter((fil) => possibleFilters.includes(fil))
-  const previousId: string = req.body.previous;
+  const previousId: string | undefined = req.body.previous;
   console.log('previousId',previousId)
   const dishes: IDish[] = JSON.parse(fs.readFileSync(dishesUrl, 'utf8'));
   const ingredients: IIngredient[] = JSON.parse(fs.readFileSync(ingredientsUrl, 'utf8'));
