@@ -1,5 +1,6 @@
 export interface IFood {
     filters?: TDishType[];
+    last:string | null;
 }
 export interface IIngredient {
     id: string,
